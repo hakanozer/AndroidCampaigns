@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.companyname.campaigns.Home">
+
+
+    <EditText
+        android:id="@+id/htxtData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="91dp"
+        android:ems="10"
+        android:hint="Data Giriniz"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/hbtnData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/htxtData"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="Data Getir" />
+</RelativeLayout>
