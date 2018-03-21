@@ -7,33 +7,33 @@
 
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@mipmap/ic_launcher_home"
             android:title="Anasayfa" />
         <item
             android:id="@+id/nav_categories"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@mipmap/ic_launcher_categories"
             android:title="Kategoriler" />
         <item
             android:id="@+id/nav_orders"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@mipmap/ic_launcher_order"
             android:title="Siparişlerim" />
         <item
             android:id="@+id/nav_favorites"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@mipmap/ic_launcher_favorites"
             android:title="Favorilerim" />
         <item
             android:id="@+id/nav_concent"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@mipmap/ic_launcher_content"
             android:title="İçerik" />
 
         <item
             android:id="@+id/nav_news"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@mipmap/ic_launcher_news"
             android:title="Haberler" />
 
         <item
             android:id="@+id/nav_address"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@mipmap/ic_launcher_address"
             android:title="Adreslerim" />
     </group>
 
