@@ -1,9 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context="com.companyname.campaigns.NewsDetail">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/txtnewsdetailtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/newsdetailimage"
+        android:layout_marginTop="25dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/baloo_bhai"
+        android:gravity="center"
+        android:shadowColor="@android:color/background_light"
+        android:text="Haberin Başlığı"
+        android:textAppearance="@style/AndroidImageSlider_Corner_Oval_Orange"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtnewsdescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txtnewsdetailtitle"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/baloo_bhai"
+        android:gravity="center"
+        android:text="Kısa Açıklama"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtnewscontent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txtnewsdescription"
+        android:layout_marginTop="18dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/baloo_bhai"
+        android:gravity="center"
+        android:text="İçerik"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/newsdetailimage"
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/txtnewsdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txtnewscontent"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/baloo_bhai"
+        android:gravity="center"
+        android:text="Tarih"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
+</RelativeLayout>
