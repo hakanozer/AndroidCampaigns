@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.companyname.campaigns.ContentDetail">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/ttitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="13dp"
+        android:background="@android:color/holo_blue_light"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:shape="oval"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/html"
+        android:text="TextView"
+        android:textAlignment="center" />
+
+    <WebView
+        android:id="@+id/html"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/ttitle"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
