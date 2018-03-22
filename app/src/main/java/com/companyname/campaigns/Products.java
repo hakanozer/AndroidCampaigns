@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -28,15 +29,17 @@ import java.util.HashMap;
 public class Products extends AppCompatActivity {
 
     ListView pListView;
+    ImageView img ;
     BaseAdapter urunBaseAdapter;
     LayoutInflater urunLayoutInflater;
-
+    static String productCatId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         pListView = findViewById(R.id.pListView);
+        img = findViewById(R.id.noProductItem);
         urunLayoutInflater = LayoutInflater.from(this);
 
         String url = "http://jsonbulut.com/json/product.php";
@@ -44,7 +47,7 @@ public class Products extends AppCompatActivity {
         hm.put("ref","ce7f46683b56cb84131405b848678c51");
         hm.put("start","0");
         hm.put("count","100");
-        hm.put("categoryId","1683");
+        hm.put("categoryId",productCatId);
         new jsonData(Products.this, url, hm).execute();
 
     }
@@ -63,18 +66,13 @@ public class Products extends AppCompatActivity {
             this.cnx = cnx;
             this.url = url;
             this.hm = hm;
-            //pro = new ProgressDialog(cnx);
-            // pro.setMessage("Yükleniyor Lütfen Bekleyiniz..");
-            // pro.show();
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
             try {
                 jsonString = Jsoup.connect(url).data(hm).timeout(30000).ignoreContentType(true).get().body().text();
-                //  pro.hide();
             } catch (Exception ex) {
-                // pro.hide();
                 Toast.makeText(cnx, "İşlem Başarısız Oldu", Toast.LENGTH_SHORT).show();
             }
             return null;
@@ -89,9 +87,11 @@ public class Products extends AppCompatActivity {
                     JSONObject jobj = new JSONObject(jsonString);
                     boolean durum = jobj.getJSONArray("Products").getJSONObject(0).getBoolean("durum");
                     String mesaj = jobj.getJSONArray("Products").getJSONObject(0).getString("mesaj");
+
                     if (durum) {
-                        final JSONArray arr = jobj.getJSONArray("Products").getJSONObject(0).getJSONArray("bilgiler");
-                        if(arr.length() > 0 ) {
+                      String arr1= jobj.getJSONArray("Products").getJSONObject(0).getString("bilgiler");
+                        if(arr1!=null && !arr1.equals("null")) {
+                            final JSONArray arr = jobj.getJSONArray("Products").getJSONObject(0).getJSONArray("bilgiler");
                             urunBaseAdapter = new BaseAdapter() {
                                 @Override
                                 public int getCount() {
@@ -146,6 +146,8 @@ public class Products extends AppCompatActivity {
                                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                     try {
                                         ProductDetail.proDt = arr.getJSONObject(i);
+                                        img.setVisibility(View.INVISIBLE);
+                                        pListView.setVisibility(View.VISIBLE);
                                         Intent it = new Intent(Products.this, ProductDetail.class);
                                         startActivity(it);
                                     } catch (JSONException e) {
@@ -154,6 +156,9 @@ public class Products extends AppCompatActivity {
                                 }
                             });
                         }else {
+
+                            img.setVisibility(View.VISIBLE);
+                            pListView.setVisibility(View.INVISIBLE);
                             Toast.makeText(cnx, "Bu Kategoride ürün yok !", Toast.LENGTH_SHORT).show();
                         }
                     } else {
@@ -169,5 +174,13 @@ public class Products extends AppCompatActivity {
         }
 
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

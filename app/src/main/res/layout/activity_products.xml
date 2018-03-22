@@ -7,6 +7,13 @@
     tools:context="com.companyname.campaigns.Products">
 
 
+    <ImageView
+        android:id="@+id/noProductItem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        app:srcCompat="@mipmap/urun_bulunamadi" />
+
     <ListView
         android:id="@+id/pListView"
         android:layout_width="match_parent"

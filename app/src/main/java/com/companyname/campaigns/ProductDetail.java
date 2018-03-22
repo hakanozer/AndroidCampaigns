@@ -40,6 +40,7 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
 
     static JSONObject proDt = null;
     private SliderLayout mDemoSlider;
+	TextView txtproductName,txtproductDescription,txtproductPrice;
     Button btnFavorites;
     DB db=new DB(this);
 
@@ -50,7 +51,16 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
         setContentView(R.layout.activity_product_detail);
         mDemoSlider = findViewById(R.id.slider);
         ratingBar =  findViewById(R.id.ratingBar);
-
+		txtproductName = findViewById(R.id.txtproductName);
+        txtproductDescription = findViewById(R.id.txtproductDescription);
+        txtproductPrice = findViewById(R.id.txtproductPrice);
+        try {
+            txtproductName.setText(proDt.getString("productName"));
+            txtproductDescription.setText(proDt.getString("description"));
+            txtproductPrice.setText(proDt.getString("price"));
+        }catch (Exception e){
+           
+        }
         // image control
         HashMap<String,String> url_maps = new HashMap<String, String>();
 
@@ -248,5 +258,14 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
         });
 
     }
-
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
