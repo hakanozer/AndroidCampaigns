@@ -40,6 +40,9 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
 
     static JSONObject proDt = null;
     private SliderLayout mDemoSlider;
+    Button btnFavorites;
+    DB db=new DB(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,13 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
 
         try {
             boolean imgControl = proDt.getBoolean("image");
-            String title = proDt.getString("productName");
+            
+            final int productId=proDt.getInt("productId");
+
+           final String title = proDt.getString("productName");
+           final String price=proDt.getString("price");
+           final int fuserid=MainActivity.userInf.getUserId();
+
             if(imgControl) {
                 JSONArray iArr = proDt.getJSONArray("images");
                 for(int i = 0; i<iArr.length(); i++) {
@@ -82,6 +91,47 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
                 mDemoSlider.setCustomAnimation(new DescriptionAnimation());
                 mDemoSlider.setDuration(4000);
                 mDemoSlider.addOnPageChangeListener(this);
+
+
+
+
+
+                btnFavorites.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        SQLiteDatabase ara=db.getWritableDatabase();
+                        Cursor c=ara.rawQuery("select * from liste where fuserid='"+fuserid+"' and fproductid='"+productId+"'  " , null);
+
+                          if (!c.moveToNext()) {
+                            SQLiteDatabase yaz=db.getWritableDatabase();
+                            //insert operation
+                            ContentValues con=new ContentValues();
+                            con.put("fuserid",fuserid);
+                            con.put("fproductid",productId);
+                            con.put("fProductTitle",title);
+                            con.put("fProductMoney",price);
+
+                            long yazSonuc=yaz.insert("liste",null,con);
+                            if(yazSonuc>0){
+                                Toast.makeText(ProductDetail.this, "Favorilerinize eklendi", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(ProductDetail.this, "Yazma Hatası !", Toast.LENGTH_SHORT).show();
+                            }
+                            yaz.close();
+                            }
+                        else{
+                            Toast.makeText(ProductDetail.this, "Bu ürün favorilerinizde kayıtlıdır!", Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+
+                    }
+                });
+
+
+
 
 
             }else {

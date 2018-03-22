@@ -1,12 +1,32 @@
 package com.companyname.campaigns;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.telecom.Call;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -18,6 +38,14 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Favorites extends Fragment {
+
+
+    static FavProList pr=null;
+
+    ListView listFovorites;
+    ArrayList<String> titles=new ArrayList<>();
+    ArrayList<FavProList> prls=new ArrayList<>();
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,6 +60,8 @@ public class Favorites extends Fragment {
     public Favorites() {
         // Required empty public constructor
     }
+
+
 
     /**
      * Use this factory method to create a new instance of
@@ -63,9 +93,69 @@ public class Favorites extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorites, container, false);
+        View view=inflater.inflate(R.layout.fragment_favorites,container,false);
+        listFovorites=view.findViewById(R.id.listFovorites);
+        listData(view);
+
+        listFovorites.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> adapterView, final View view, int i, long l) {
+                AlertDialog.Builder uyari=new AlertDialog.Builder(view.getContext());
+                uyari.setTitle("Uyarı Başlığı");
+                uyari.setTitle("Uyarı Mesajı");
+                uyari.setCancelable(false);
+                uyari.setIcon(R.drawable.ic_launcher_background);
+                uyari.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        DB db=new DB(getContext());
+                        SQLiteDatabase sil=db.getWritableDatabase();
+                        int sDurum=sil.delete("liste","favorid" + "=" + prls.get(0).getFavorid(),null);
+                        if(sDurum>0){
+                            Toast.makeText(getContext(), "Silme işlemi başarılı", Toast.LENGTH_SHORT).show();
+                            listData(view);
+                        }
+                    }
+                });
+                uyari.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getContext(), "Silme işlemi başarısız", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                uyari.create().show();
+            }
+        });
+        return view;
     }
+
+
+
+
+    public void listData(View view){
+        DB db=new DB(view.getContext());
+        SQLiteDatabase oku=db.getReadableDatabase();
+        Cursor cr=oku.query("liste",null,null,null,null,null,null);
+        titles.clear();
+        prls.clear();
+        while(cr.moveToNext()){
+            String title=cr.getString(cr.getColumnIndex("fProductTitle"));
+            titles.add(title);
+            FavProList pr=new FavProList();
+            pr.setFavorid(cr.getInt(cr.getColumnIndex("favorid")));
+            pr.setFuserid(cr.getInt(cr.getColumnIndex("fuserid")));
+            pr.setFproductid(cr.getInt(cr.getColumnIndex("fproductid")));
+            pr.setfProductTitle(cr.getString(cr.getColumnIndex("fProductTitle")));
+            pr.setfProductMoney(cr.getString(cr.getColumnIndex("fProductMoney")));
+            prls.add(pr);
+        }
+        final ArrayAdapter<String> adp=new ArrayAdapter<String>(view.getContext(),android.R.layout.simple_list_item_1,android.R.id.text1,titles);
+        listFovorites.setAdapter(adp);
+        oku.close();
+    }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
