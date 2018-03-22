@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidCampaigns.iml" filepath="$PROJECT_DIR$/AndroidCampaigns.iml" />
-      <module fileurl="file://C:\Users\Muharrem\AndroidStudioProjects\AndroidCampaigns\AndroidCampaigns-master.iml" filepath="C:\Users\Muharrem\AndroidStudioProjects\AndroidCampaigns\AndroidCampaigns-master.iml" />
-      <module fileurl="file://C:\Users\joglen20\Desktop\AndroidCampaigns-master\Campaigns.iml" filepath="C:\Users\joglen20\Desktop\AndroidCampaigns-master\Campaigns.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\joglen20\Desktop\AndroidCampaigns-master\app\app.iml" filepath="C:\Users\joglen20\Desktop\AndroidCampaigns-master\app\app.iml" />
     </modules>
   </component>
 </project>
