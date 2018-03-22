@@ -10,7 +10,8 @@
         android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        app:srcCompat="@mipmap/ic_launcher_round" android:contentDescription="TODO"/>
+        android:contentDescription="TODO"
+        app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
         android:id="@+id/txtnewstitle"
@@ -20,10 +21,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="33dp"
         android:layout_toEndOf="@+id/pronewsimage"
-        android:background="@color/colorAccent"
+        android:background="@android:color/background_light"
         android:fontFamily="sans-serif"
         android:gravity="center"
-        android:text="@string/textview"
-        android:textColor="@android:color/background_light"
+        android:textColor="@android:color/background_dark"
         android:textSize="18sp" />
 </RelativeLayout>

@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:background="@color/colorPrimary"
+    android:background="@android:color/background_light"
+    tools:background="@android:color/background_light"
     tools:context="com.companyname.campaigns.NewsList">
 
     <!-- TODO: Update blank fragment layout -->
@@ -14,5 +14,5 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/colorAccent" />
+        android:background="@android:color/background_light" />
 </RelativeLayout>
