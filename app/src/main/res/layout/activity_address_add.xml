@@ -1,9 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.companyname.campaigns.AddressAdd">
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/aCity"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:ems="10"
+        android:hint="İl"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/aDistrict"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/aCity"
+        android:layout_below="@+id/aCity"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="İlçe"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/aNeighborhood"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/aDistrict"
+        android:layout_below="@+id/aDistrict"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Mahalle"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/aAddress"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/aNeighborhood"
+        android:layout_below="@+id/aNeighborhood"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Adres"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/aDoorNumber"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/aAddress"
+        android:layout_below="@+id/aAddress"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Kapı No"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/aNote"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/aDoorNumber"
+        android:layout_below="@+id/aDoorNumber"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:hint="Not"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnAddressAdd"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/aNote"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:text="Ekle" />
+</RelativeLayout>
