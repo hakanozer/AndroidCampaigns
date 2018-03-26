@@ -4,6 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.companyname.campaigns.CompanyInfo">
+
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/common_google_signin_btn_icon_dark"
+                android:autofillHints="burası şirket logosu olur"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ŞİRKET İSMİ"
+                android:textColor="#464646"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:padding="4dp"
+                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email : deneme@gmail.com"
+                    android:textColor="#464646"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:padding="4dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tlf : +90 (342) 482 10 10"
+                    android:textColor="#464646"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:padding="4dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adres : Beybatmaz Mah. 18 Nolu Sk. \n NO: 10  Pendik/İSTANBUL"
+                    android:textColor="#464646"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:padding="4dp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="16dp"
+            >
+            <fragment
+                android:id="@+id/map1"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                tools:context="com.companyname.campaigns.CompanyInfo"
+                />
+        </LinearLayout>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
