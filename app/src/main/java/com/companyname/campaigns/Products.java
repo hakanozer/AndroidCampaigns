@@ -33,11 +33,14 @@ public class Products extends AppCompatActivity {
     BaseAdapter urunBaseAdapter;
     LayoutInflater urunLayoutInflater;
     static String productCatId;
+    static String productCatName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(productCatName);
         pListView = findViewById(R.id.pListView);
         img = findViewById(R.id.noProductItem);
         urunLayoutInflater = LayoutInflater.from(this);
@@ -122,7 +125,7 @@ public class Products extends AppCompatActivity {
                                         TextView tText = view.findViewById(R.id.proitemTitle);
                                         TextView pText = view.findViewById(R.id.proitemPrice);
                                         tText.setText(title);
-                                        pText.setText(price);
+                                        pText.setText(price+" TL ");
 
                                         // image control
                                         ImageView pImage = view.findViewById(R.id.proitemImage);
@@ -130,7 +133,7 @@ public class Products extends AppCompatActivity {
                                         if (imageStatu) {
                                             String iUrl = pdata.getJSONArray("images").getJSONObject(0).getString("normal");
                                             //Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
-                                            Picasso.with(getApplicationContext()).load(iUrl).into(pImage);
+                                            Picasso.with(getApplicationContext()).load(iUrl).fit().centerCrop().into(pImage);
 
                                         }
 

@@ -212,6 +212,7 @@ public class Categories extends Fragment {
                             @Override
                             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
                                 Products.productCatId =  listIdChild.get(listDataHeader.get(i)).get(i1);
+                                Products.productCatName =  listDataChild.get(listDataHeader.get(i)).get(i1);
                                 Intent intent = new Intent(getContext(), Products.class);
                                 startActivity(intent);
                                 return false;

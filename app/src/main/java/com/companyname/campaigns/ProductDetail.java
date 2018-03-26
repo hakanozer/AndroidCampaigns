@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -44,8 +46,9 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
 
     static JSONObject proDt = null;
     private SliderLayout mDemoSlider;
-	TextView txtproductName,txtproductDescription,txtproductPrice;
     Button btnFavorites;
+    WebView webView;
+    TextView txtProDetailPrice ;
     DB db=new DB(this);
     Button btnAddCart;
 
@@ -53,17 +56,32 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+        webView = findViewById(R.id.webView);
+        txtProDetailPrice = findViewById(R.id.txtProDetailPrice);
+        webView.getSettings().setJavaScriptEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mDemoSlider = findViewById(R.id.slider);
         ratingBar =  findViewById(R.id.ratingBar);
         btnAddCart = findViewById(R.id.btnAddCart);
-		txtproductName = findViewById(R.id.txtproductName);
-        txtproductDescription = findViewById(R.id.txtproductDescription);
-        txtproductPrice = findViewById(R.id.txtproductPrice);
 		btnFavorites=findViewById(R.id.btnFavorites);
         try {
-            txtproductName.setText(proDt.getString("productName"));
-            txtproductDescription.setText(proDt.getString("description"));
-            txtproductPrice.setText(proDt.getString("price"));
+
+            String htmlData =
+                            "<html>\n" +
+                            "<head>\n" +
+                            "<title>Home</title>\n" +
+                            "</head>\n" +
+                            "<body>\n" +
+                                    "<p> "+proDt.getString("productName")+" </p>"+
+                                    "<p> "+proDt.getString("description")+" </p>"+
+                            "</body>\n" +
+                            "</html>\n";
+
+            getSupportActionBar().setTitle(proDt.getString("productName"));
+            webView.setWebViewClient(new WebViewClient());
+            webView.loadData(htmlData , "text/html; charset=UTF-8",null);
+            txtProDetailPrice.setText(proDt.getString("price") +" TL");
         }catch (Exception e){
            
         }
@@ -93,7 +111,7 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
                     textSliderView
                             .description(name)
                             .image(url_maps.get(name))
-                            .setScaleType(BaseSliderView.ScaleType.Fit)
+                            .setScaleType(BaseSliderView.ScaleType.FitCenterCrop)
                             .setOnSliderClickListener(this);
 
                     //add your extra information
