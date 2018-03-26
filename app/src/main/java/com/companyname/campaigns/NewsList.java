@@ -117,7 +117,7 @@ public class NewsList extends Fragment {
                 //  pro.hide();
             } catch (Exception ex) {
                 // pro.hide();
-                Toast.makeText(cnx, "İşlem Başarısız Oldu", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(cnx, "İşlem Başarısız Oldu", Toast.LENGTH_SHORT).show();
             }
             return null;
         }

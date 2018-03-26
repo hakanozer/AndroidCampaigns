@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 
@@ -39,13 +40,18 @@ public class CustomDialog extends AppCompatDialogFragment {
         LayoutInflater inflater=getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.custom_cartdialog,null);
         editDesc = view.findViewById(R.id.edtDescription);
-        static JSONObject proDt = null;
+
         final userPro up = MainActivity.userInf;
         final String customerId =up.getUserId()+"";
-        final String productId=proDt.getInt("productId")+"";
+        String productId = "";
+        try {
+            productId = ProductDetail.proDt.getString("productId");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
-
+        final String finalProductId = productId;
         builder.setView(view)
                 .setTitle("Accept Cart")
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -61,7 +67,7 @@ public class CustomDialog extends AppCompatDialogFragment {
                         HashMap<String, String> hm = new HashMap<>();
                         hm.put("ref", "ce7f46683b56cb84131405b848678c51");
                         hm.put("customerId", customerId);
-                        hm.put("productId", productId );
+                        hm.put("productId", finalProductId);
                         hm.put("html", editDesc.getText().toString().trim());
                         new jsonData(getContext(),url,hm).execute();
 

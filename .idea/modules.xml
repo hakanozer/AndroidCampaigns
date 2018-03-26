@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\java_oglen\Documents\GitHub\AndroidCampaigns2\AndroidCampaigns.iml" filepath="C:\Users\java_oglen\Documents\GitHub\AndroidCampaigns2\AndroidCampaigns.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AndroidCampaigns2.iml" filepath="$PROJECT_DIR$/AndroidCampaigns2.iml" />
+      <module fileurl="file://C:\Users\j_oglen\AndroidStudioProjects\Campaigns\AndroidCampaigns.iml" filepath="C:\Users\j_oglen\AndroidStudioProjects\Campaigns\AndroidCampaigns.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Campaigns.iml" filepath="$PROJECT_DIR$/Campaigns.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\java_oglen\Documents\GitHub\AndroidCampaigns2\app\app.iml" filepath="C:\Users\java_oglen\Documents\GitHub\AndroidCampaigns2\app\app.iml" />
     </modules>
   </component>
 </project>

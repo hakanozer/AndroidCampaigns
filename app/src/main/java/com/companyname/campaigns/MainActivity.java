@@ -159,6 +159,7 @@ public class MainActivity extends AppCompatActivity
         }
        else if (id == R.id.nav_categories) {
             fgtClass = Categories.class;
+            getSupportActionBar().setTitle("Kategoriler");
         } else if (id == R.id.nav_orders) {
             fgtClass = Orders.class;
         } else if (id == R.id.nav_favorites) {

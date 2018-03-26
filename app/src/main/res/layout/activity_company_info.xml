@@ -23,7 +23,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:background="@drawable/common_google_signin_btn_icon_dark"
+                android:background="@drawable/ic_menu_send"
                 android:autofillHints="burası şirket logosu olur"/>
 
             <LinearLayout
