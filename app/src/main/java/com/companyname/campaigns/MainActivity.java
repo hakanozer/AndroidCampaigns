@@ -1,7 +1,9 @@
 package com.companyname.campaigns;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +19,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -56,6 +59,8 @@ public class MainActivity extends AppCompatActivity
     TextView headerNameSurname, headerMail;
     ImageButton headerCompanyInfoBtn;
     private static final int EXTERNAL_WRİTE = 1;
+    SharedPreferences sha;
+    SharedPreferences.Editor edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        sha = getSharedPreferences("pro", MODE_PRIVATE);
+        edit = sha.edit();
 
         // user login control
         if (userInf == null) {
@@ -93,8 +100,7 @@ public class MainActivity extends AppCompatActivity
         headerNameSurname.setText(nameSurname);
         headerMail.setText(userInf.getUserEmail());
         navigationView.setNavigationItemSelectedListener(this);
-
-        Fragment fgt = null;
+ 
         Class fgtClass = Home.class;
         // fragment file open
         try {
@@ -154,6 +160,7 @@ public class MainActivity extends AppCompatActivity
         Fragment fgt = null;
         Class fgtClass = null;
 
+
         if (id == R.id.nav_home) {
             fgtClass = Home.class;
         }
@@ -162,14 +169,43 @@ public class MainActivity extends AppCompatActivity
             getSupportActionBar().setTitle("Kategoriler");
         } else if (id == R.id.nav_orders) {
             fgtClass = Orders.class;
+            getSupportActionBar().setTitle("Siparişler");
         } else if (id == R.id.nav_favorites) {
             fgtClass = Favorites.class;
+            getSupportActionBar().setTitle("Favoriler");
         } else if (id == R.id.nav_concent) {
             fgtClass = ContentList.class;
+            getSupportActionBar().setTitle("İçerik");
         } else if (id == R.id.nav_news) {
             fgtClass = NewsList.class;
+            getSupportActionBar().setTitle("Haberler");
         }else if (id == R.id.nav_address) {
             fgtClass = AddressList.class;
+            getSupportActionBar().setTitle("Adres");
+        }else if (id == R.id.nav_logout) {
+            AlertDialog.Builder alert=new AlertDialog.Builder(MainActivity.this);
+            alert.setTitle("Çıkış Yap");
+            alert.setMessage("Çıkmak istediğinizden emin misiniz?");
+            alert.setCancelable(false);
+            //alert.setIcon(R.mipmap.)
+            alert.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                        userInf.setUserId(-1);
+                        edit.putInt("userId",-1);
+                        edit.commit();
+                        Intent k=new Intent(MainActivity.this,Login.class);
+                        startActivity(k);
+
+                }
+            });
+            alert.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+            alert.create().show();
         }else if (id == R.id.nav_share) {
 
 

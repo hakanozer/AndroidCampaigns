@@ -47,6 +47,10 @@
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Send" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@mipmap/ic_launcher_logout"
+                android:title="Logout" />
         </menu>
     </item>
 
