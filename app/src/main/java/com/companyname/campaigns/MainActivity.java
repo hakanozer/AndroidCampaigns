@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity
         headerNameSurname.setText(nameSurname);
         headerMail.setText(userInf.getUserEmail());
         navigationView.setNavigationItemSelectedListener(this);
- 
+        Fragment fgt = null;
         Class fgtClass = Home.class;
         // fragment file open
         try {
