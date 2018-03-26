@@ -101,8 +101,8 @@ public class Favorites extends Fragment {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, int i, long l) {
                 AlertDialog.Builder uyari=new AlertDialog.Builder(view.getContext());
-                uyari.setTitle("Uyarı Başlığı");
-                uyari.setTitle("Uyarı Mesajı");
+
+                uyari.setTitle("Silmek istediğinizden emin misiniz?");
                 uyari.setCancelable(false);
                 uyari.setIcon(R.drawable.ic_launcher_background);
                 uyari.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
@@ -113,7 +113,7 @@ public class Favorites extends Fragment {
                         SQLiteDatabase sil=db.getWritableDatabase();
                         int sDurum=sil.delete("liste","favorid" + "=" + prls.get(0).getFavorid(),null);
                         if(sDurum>0){
-                            Toast.makeText(getContext(), "Silme işlemi başarılı", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Silme işlemi başarılı.", Toast.LENGTH_SHORT).show();
                             listData(view);
                         }
                     }
@@ -121,7 +121,7 @@ public class Favorites extends Fragment {
                 uyari.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getContext(), "Silme işlemi başarısız", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Silme işlemi başarısız.", Toast.LENGTH_SHORT).show();
                     }
                 });
                 uyari.create().show();

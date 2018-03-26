@@ -43,7 +43,7 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
 	TextView txtproductName,txtproductDescription,txtproductPrice;
     Button btnFavorites;
     DB db=new DB(this);
-
+    Button btnAddCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,7 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
         setContentView(R.layout.activity_product_detail);
         mDemoSlider = findViewById(R.id.slider);
         ratingBar =  findViewById(R.id.ratingBar);
+        btnAddCart = findViewById(R.id.btnAddCart);
 		txtproductName = findViewById(R.id.txtproductName);
         txtproductDescription = findViewById(R.id.txtproductDescription);
         txtproductPrice = findViewById(R.id.txtproductPrice);
@@ -65,9 +66,10 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
         // image control
         HashMap<String,String> url_maps = new HashMap<String, String>();
 
+
         try {
             boolean imgControl = proDt.getBoolean("image");
-            
+
             final int productId=proDt.getInt("productId");
 
            final String title = proDt.getString("productName");
@@ -153,6 +155,12 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
         }
         String url="http://jsonbulut.com/json/likeManagement.php";
         raiting(ProductDetail.this,ratingBar,5,606,url);
+        btnAddCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog();
+            }
+        });
     }
 
     @Override
@@ -182,7 +190,10 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
 
     }
 
-
+    private void openDialog() {
+        CustomDialog dialog=new CustomDialog();
+        dialog.show(getSupportFragmentManager(),"Cart Dialog");
+    }
 
     // json raiting  data export edit:Muharrem
     class jsonDataRaiting extends AsyncTask<Void, Void, Void> {
