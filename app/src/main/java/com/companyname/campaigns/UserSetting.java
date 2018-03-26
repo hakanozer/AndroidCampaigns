@@ -47,6 +47,7 @@ public class UserSetting extends AppCompatActivity {
         btnUserEdit = findViewById(R.id.btnUserEdit);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Kullanıcı Ayarları");
 
         sha = getSharedPreferences("pro", MODE_PRIVATE);
         edit = sha.edit();
@@ -71,23 +72,23 @@ public class UserSetting extends AppCompatActivity {
                 int usr = user.getUserId();
 
                 if (n.equals("")) {
-                    Toast.makeText(UserSetting.this, "Please fill in the name field!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserSetting.this, "Lütfen isim giriniz!", Toast.LENGTH_SHORT).show();
                 } else if (s.equals("")) {
-                    Toast.makeText(UserSetting.this, "Please fill in the surname field!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserSetting.this, "Lütfen soyadı giriniz!", Toast.LENGTH_SHORT).show();
                 } else if (t.equals("")) {
-                    Toast.makeText(UserSetting.this, "Please fill in the phone number field!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserSetting.this, "Lütfen telefon numarası giriniz!", Toast.LENGTH_SHORT).show();
                 } else if (m.equals("")) {
-                    Toast.makeText(UserSetting.this, "Please fill in the mail field!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserSetting.this, "Lütfen mail adresi giriniz!", Toast.LENGTH_SHORT).show();
                 }else if (p.equals("")) {
-                    Toast.makeText(UserSetting.this, "Please fill in the password field!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserSetting.this, "Lütfen şifre giriniz!", Toast.LENGTH_SHORT).show();
                 } else if (!nTF) {
-                    Toast.makeText(UserSetting.this, "Name field must contain only letters!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserSetting.this, "İsim sadece harf içermelidir!", Toast.LENGTH_SHORT).show();
                 } else if (!sTF) {
-                    Toast.makeText(UserSetting.this, "Surname field must contain only letters!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserSetting.this, "Soyadı sadece harf içermelidir!", Toast.LENGTH_SHORT).show();
                 } else if (!mTF) {
-                    Toast.makeText(UserSetting.this, "Incorrect mail form!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserSetting.this, "Doğru mail formatı giriniz!", Toast.LENGTH_SHORT).show();
                 } else if (!tTF) {
-                    Toast.makeText(UserSetting.this, "Incorrect phone form!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserSetting.this, "Doğru telefon numarası formatı giriniz!", Toast.LENGTH_SHORT).show();
                 } else {
                     String url = "http://jsonbulut.com/json/userSettings.php";
                     HashMap<String, String> hm = new HashMap<>();
@@ -98,6 +99,10 @@ public class UserSetting extends AppCompatActivity {
                     hm.put("userMail", m);
                     hm.put("userPass", p);
                     hm.put("userId", usr + "");
+
+                    MainActivity.userInf.setUserName(n);
+                    MainActivity.userInf.setUserSurname(s);
+                    MainActivity.userInf.setUserEmail(m);
 
                     Intent i = new Intent(UserSetting.this, MainActivity.class);
                     startActivity(i);
@@ -140,15 +145,15 @@ public class UserSetting extends AppCompatActivity {
                     boolean durum = jobj.getJSONArray("user").getJSONObject(0).getBoolean("durum");
                     String mesaj = jobj.getJSONArray("user").getJSONObject(0).getString("mesaj");
                     if(durum) {
-                        Toast.makeText(cnx, "Process Completed Successfully.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(cnx, "İşlem Başarıyla Tamamlandı.", Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(cnx, mesaj, Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception ex) {
-                    Toast.makeText(cnx, "Json Pars Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(cnx, "Json Pars Hatası", Toast.LENGTH_SHORT).show();
                 }
             }else {
-                Toast.makeText(cnx, "Server Error Created. ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(cnx, "Sunucu Hatası Oluştu. ", Toast.LENGTH_SHORT).show();
             }
             super.onPostExecute(aVoid);
         }
@@ -158,7 +163,7 @@ public class UserSetting extends AppCompatActivity {
             try {
                 jsonString = Jsoup.connect(url).data(hm).timeout(30000).ignoreContentType(true).get().body().text();
             }catch (Exception ex) {
-                Toast.makeText(cnx, "Process Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(cnx, "İşlem Başarısız!", Toast.LENGTH_SHORT).show();
             }
             return null;
         }
