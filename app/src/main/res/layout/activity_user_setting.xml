@@ -73,3 +73,70 @@
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txtUserSurname"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@+id/textView13"
+        android:layout_alignBottom="@+id/textView13"
+        android:layout_alignStart="@+id/txtUserName"
+        android:ems="10"
+        android:hint="Surname"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txtUserMail"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@+id/textView14"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_alignStart="@+id/txtUserSurname"
+        android:ems="10"
+        android:hint="Mail"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txtUserPhone"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@+id/textView15"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_alignStart="@+id/txtUserMail"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnUserEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtUserPass"
+        android:layout_below="@+id/txtUserPass"
+        android:layout_marginTop="53dp"
+        android:text="Edit"
+        tools:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView15"
+        android:layout_below="@+id/txtUserPhone"
+        android:layout_marginTop="24dp"
+        android:text="Password"
+        android:textColor="@android:color/background_dark"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/txtUserPass"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@+id/textView16"
+        android:layout_alignBottom="@+id/textView16"
+        android:layout_alignStart="@+id/txtUserPhone"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+</RelativeLayout>

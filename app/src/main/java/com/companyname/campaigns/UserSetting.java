@@ -118,4 +118,49 @@ public class UserSetting extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    class jsonData extends AsyncTask<Void, Void, Void> {
+
+        String url = "";
+        HashMap<String,String> hm = new HashMap<>();
+        Context cnx = null;
+        String jsonString = "";
+        public jsonData(Context cnx ,String url,HashMap<String,String> hm){
+            this.cnx = cnx;
+            this.url = url;
+            this.hm = hm;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+
+            if (!jsonString.equals("")){
+                try {
+                    JSONObject jobj = new JSONObject(jsonString);
+                    boolean durum = jobj.getJSONArray("user").getJSONObject(0).getBoolean("durum");
+                    String mesaj = jobj.getJSONArray("user").getJSONObject(0).getString("mesaj");
+                    if(durum) {
+                        Toast.makeText(cnx, "Process Completed Successfully.", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(cnx, mesaj, Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception ex) {
+                    Toast.makeText(cnx, "Json Pars Error", Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                Toast.makeText(cnx, "Server Error Created. ", Toast.LENGTH_SHORT).show();
+            }
+            super.onPostExecute(aVoid);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                jsonString = Jsoup.connect(url).data(hm).timeout(30000).ignoreContentType(true).get().body().text();
+            }catch (Exception ex) {
+                Toast.makeText(cnx, "Process Failed", Toast.LENGTH_SHORT).show();
+            }
+            return null;
+        }
+    }
 }
