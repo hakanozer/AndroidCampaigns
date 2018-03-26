@@ -54,6 +54,7 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
 		txtproductName = findViewById(R.id.txtproductName);
         txtproductDescription = findViewById(R.id.txtproductDescription);
         txtproductPrice = findViewById(R.id.txtproductPrice);
+		btnFavorites=findViewById(R.id.btnFavorites);
         try {
             txtproductName.setText(proDt.getString("productName"));
             txtproductDescription.setText(proDt.getString("description"));

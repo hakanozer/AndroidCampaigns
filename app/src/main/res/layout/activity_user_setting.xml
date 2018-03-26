@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.companyname.campaigns.UserSetting">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="User Information"
+        android:textColor="@android:color/background_dark"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtUserName"
+        android:layout_alignBottom="@+id/txtUserName"
+        android:layout_marginEnd="24dp"
+        android:layout_toStartOf="@+id/textView9"
+        android:text="Name"
+        android:textColor="@android:color/background_dark"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_below="@+id/txtUserName"
+        android:layout_marginTop="20dp"
+        android:text="Surname"
+        android:textColor="@android:color/background_dark"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView13"
+        android:layout_below="@+id/txtUserSurname"
+        android:layout_marginTop="24dp"
+        android:text="Email"
+        android:textColor="@android:color/background_dark"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView14"
+        android:layout_below="@+id/txtUserMail"
+        android:layout_marginTop="22dp"
+        android:text="Phone"
+        android:textColor="@android:color/background_dark"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/txtUserName"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/textView9"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="23dp"
+        android:layout_toEndOf="@+id/textView8"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName" />
