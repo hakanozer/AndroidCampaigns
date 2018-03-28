@@ -1,4 +1,4 @@
-package com.companyname.campaigns;
+﻿package com.companyname.campaigns;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -64,7 +64,14 @@ public class ProductDetail extends AppCompatActivity implements BaseSliderView.O
         mDemoSlider = findViewById(R.id.slider);
         ratingBar =  findViewById(R.id.ratingBar);
         btnAddCart = findViewById(R.id.btnAddCart);
-		btnFavorites=findViewById(R.id.btnFavorites);
+	btnFavorites=findViewById(R.id.btnFavorites);
+	try {
+           String rote= proDt.getJSONObject("likes").getJSONObject("like").getString("ortalama");
+           ratingBar.setRating(Float.valueOf(rote));
+            Log.d("likes ",rote);
+        } catch (JSONException e) {
+           Log.e("likes hatalı", String.valueOf(e));
+        }
         try {
 
             String htmlData =
