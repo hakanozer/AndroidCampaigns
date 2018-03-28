@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity
     private static final int EXTERNAL_WRİTE = 1;
     SharedPreferences sha;
     SharedPreferences.Editor edit;
+	 HashMap<String,String> hmCompany=new HashMap<>();
+     public static CompanyPro cp=new CompanyPro();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +112,9 @@ public class MainActivity extends AppCompatActivity
         }catch (Exception ex) {
             Log.e("hata",ex.toString());
         }
-
+		    hmCompany.put("ref","ce7f46683b56cb84131405b848678c51");
+    String url="http://jsonbulut.com/json/company.php";
+      new jsonDataUser(this,url,hmCompany).execute();
 
     }
 
@@ -305,6 +309,66 @@ public class MainActivity extends AppCompatActivity
             Log.e("Muharrem","Permission: "+permissions[0]+ "was "+grantResults[0]);
             //resume tasks needing this permission
         }
+    }
+	class jsonDataUser extends AsyncTask<Void, Void, Void> {
+
+        String url = "";
+        HashMap<String,String> hm = new HashMap<>();
+        Context cnx = null;
+        String jsonString = "";
+        // ProgressDialog pro;
+        public jsonDataUser(Context cnx,String url,HashMap<String,String> hm){
+
+            this.url = url;
+            this.hm = hm;
+            this.cnx=cnx;
+            //pro = new ProgressDialog(cnx);
+            // pro.setMessage("Yükleniyor Lütfen Bekleyiniz..");
+            // pro.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                jsonString = Jsoup.connect(url).data(hm).timeout(30000).ignoreContentType(true).get().body().text();
+                //  pro.hide();
+            }catch (Exception ex) {
+                // pro.hide();
+                Toast.makeText(cnx, "İşlem Başarısız Oldu", Toast.LENGTH_SHORT).show();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+
+            // grafiksel işlemler bu gövdede yer alır.
+            if (!jsonString.equals("")){
+                try {
+                    JSONObject jobj = new JSONObject(jsonString);
+                    boolean durum = jobj.getJSONArray("Company").getJSONObject(0).getBoolean("durum");
+                    String mesaj = jobj.getJSONArray("Company").getJSONObject(0).getString("mesaj");
+                    cp.setCompanyName(jobj.getJSONArray("Company").getJSONObject(0).getJSONObject("bilgiler").getString("companyName"));
+                    cp.setCompanyAddress(jobj.getJSONArray("Company").getJSONObject(0).getJSONObject("bilgiler").getString("companyAddress"));
+                    cp.setCompanylogo(jobj.getJSONArray("Company").getJSONObject(0).getJSONObject("bilgiler").getString("companylogo"));
+                    cp.setCompanyPhone(jobj.getJSONArray("Company").getJSONObject(0).getJSONObject("bilgiler").getString("companyPhone"));
+                    cp.setLongitude(jobj.getJSONArray("Company").getJSONObject(0).getJSONObject("bilgiler").getString("longitude"));
+                    cp.setLatitude(jobj.getJSONArray("Company").getJSONObject(0).getJSONObject("bilgiler").getString("latitude"));
+                    if(durum) {
+                        Log.d("longitude",cp.getLongitude());
+
+                    }else {
+                        Toast.makeText(cnx, mesaj, Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception ex) {
+                    Toast.makeText(cnx, "Json Pars Hatası", Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                Toast.makeText(cnx, "Sunucu Hatası Oluştur.. ", Toast.LENGTH_SHORT).show();
+            }
+            super.onPostExecute(aVoid);
+        }
+
     }
 
 
