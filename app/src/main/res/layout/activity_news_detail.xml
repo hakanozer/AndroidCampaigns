@@ -7,53 +7,6 @@
     android:background="@android:color/background_light"
     tools:context="com.companyname.campaigns.NewsDetail">
 
-    <TextView
-        android:id="@+id/txtnewsdetailtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/newsdetailimage"
-        android:layout_marginTop="25dp"
-        android:background="@android:color/background_light"
-        android:fontFamily="sans-serif"
-        android:gravity="center"
-        android:shadowColor="@android:color/background_light"
-        android:text="Haberin Başlığı"
-        android:textAppearance="@style/AndroidImageSlider_Corner_Oval_Orange"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/txtnewsdescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/txtnewsdetailtitle"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/background_light"
-        android:fontFamily="sans-serif"
-        android:gravity="center"
-        android:text="Kısa Açıklama"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/txtnewscontent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/txtnewsdescription"
-        android:layout_marginTop="18dp"
-        android:background="@android:color/background_light"
-        android:fontFamily="sans-serif"
-        android:gravity="center"
-        android:text="İçerik"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
-
     <ImageView
         android:id="@+id/newsdetailimage"
         android:layout_width="100dp"
@@ -63,18 +16,11 @@
         android:layout_alignParentTop="true"
         app:srcCompat="@mipmap/ic_launcher" />
 
-    <TextView
-        android:id="@+id/txtnewsdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/txtnewscontent"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/background_light"
-        android:fontFamily="sans-serif"
-        android:gravity="center"
-        android:text="Tarih"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
+    <WebView
+        android:id="@+id/newsWebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/newsdetailimage"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
