@@ -1,4 +1,4 @@
-﻿package com.companyname.campaigns;
+package com.companyname.campaigns;
 
 import android.content.ContentValues;
 import android.content.Context;

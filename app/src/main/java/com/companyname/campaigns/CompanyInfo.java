@@ -2,6 +2,7 @@ package com.companyname.campaigns;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,8 +31,6 @@ public class CompanyInfo extends AppCompatActivity implements OnMapReadyCallback
         txtCompanyName=findViewById(R.id.txtCompanyName);
         txtCompanyPhone=findViewById(R.id.txtCompanyPhone);
 
-
-
         txtCompanyName.setText(MainActivity.cp.getCompanyName());
         txtCompanyPhone.setText(MainActivity.cp.getCompanyPhone());
         ImageView imgView = (ImageView) findViewById(R.id.imageView);
@@ -49,5 +48,9 @@ public class CompanyInfo extends AppCompatActivity implements OnMapReadyCallback
         LatLng location= new LatLng(Double.valueOf(MainActivity.cp.getLatitude()),Double.valueOf(MainActivity.cp.getLongitude()));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15));
         mMap.addMarker(new MarkerOptions().position(location).title(MainActivity.cp.getCompanyAddress()));
+        Log.d("Map","Yükleme Tamalandı");
     }
+
+
+
 }

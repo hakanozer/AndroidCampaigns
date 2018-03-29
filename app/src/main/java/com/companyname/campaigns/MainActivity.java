@@ -1,4 +1,4 @@
-﻿package com.companyname.campaigns;
+package com.companyname.campaigns;
 
 import android.Manifest;
 import android.content.Context;
@@ -108,6 +108,11 @@ public class MainActivity extends AppCompatActivity
         headerNameSurname.setText(nameSurname);
         headerMail.setText(userInf.getUserEmail());
         navigationView.setNavigationItemSelectedListener(this);
+        anasayfaDataCagir();
+    }
+
+    public void anasayfaDataCagir() {
+
         Fragment fgt = null;
         Class fgtClass = Home.class;
         // fragment file open
@@ -116,13 +121,18 @@ public class MainActivity extends AppCompatActivity
             FragmentManager mng = getSupportFragmentManager();
             mng.beginTransaction().replace(R.id.flgContent, fgt).commit();
         }catch (Exception ex) {
-            Log.e("hata",ex.toString());
+            Log.e("hatalar",ex.toString());
         }
-		    hmCompany.put("ref","ce7f46683b56cb84131405b848678c51");
-    String url="http://jsonbulut.com/json/company.php";
-      new jsonDataUser(this,url,hmCompany).execute();
 
+        hmCompany.clear();
+        hmCompany.put("ref","ce7f46683b56cb84131405b848678c51");
+                String url="http://jsonbulut.com/json/company.php";
+                new jsonDataUser(MainActivity.this,url,hmCompany).execute();
     }
+
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -170,8 +180,9 @@ public class MainActivity extends AppCompatActivity
         Fragment fgt = null;
         Class fgtClass = null;
 
-
         if (id == R.id.nav_home) {
+            getSupportActionBar().setTitle("Anasayfa");
+            anasayfaDataCagir();
             fgtClass = Home.class;
         }
        else if (id == R.id.nav_categories) {
@@ -206,6 +217,7 @@ public class MainActivity extends AppCompatActivity
                         edit.commit();
                         Intent k=new Intent(MainActivity.this,Login.class);
                         startActivity(k);
+                        finish();
 
                 }
             });
