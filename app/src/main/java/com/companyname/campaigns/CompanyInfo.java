@@ -3,6 +3,7 @@ package com.companyname.campaigns;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,11 +34,12 @@ public class CompanyInfo extends AppCompatActivity implements OnMapReadyCallback
 
         txtCompanyName.setText(MainActivity.cp.getCompanyName());
         txtCompanyPhone.setText(MainActivity.cp.getCompanyPhone());
+        setTitle(MainActivity.cp.getCompanyName());
         ImageView imgView = (ImageView) findViewById(R.id.imageView);
         Picasso.with(this)
                 .load(MainActivity.cp.getCompanylogo())
                 .into(imgView);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -50,7 +52,15 @@ public class CompanyInfo extends AppCompatActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(location).title(MainActivity.cp.getCompanyAddress()));
         Log.d("Map","Yükleme Tamalandı");
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home :
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
 }
