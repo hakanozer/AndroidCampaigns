@@ -289,7 +289,8 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_send) {
-
+            Intent i = new Intent(MainActivity.this, SendSMS.class);
+            startActivity(i);
         }
 
         // fragment file open
